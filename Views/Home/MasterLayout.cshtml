@@ -1,0 +1,484 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Tiki Product Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .header img {
+                height: 40px;
+            }
+
+            .header input {
+                width: 300px;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            .header .icons {
+                display: flex;
+                align-items: center;
+            }
+
+                .header .icons i {
+                    margin-left: 20px;
+                    font-size: 20px;
+                    color: #333;
+                }
+
+        .breadcrumb {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: left; /* Căn trái breadcrumb */
+        }
+
+            .breadcrumb a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .breadcrumb a:hover {
+                    text-decoration: underline;
+                }
+
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        .left-column, .center-column, .right-column {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .left-column {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .center-column {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .right-column {
+            flex: 1;
+            height: auto;
+        }
+
+        .product-images img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .product-thumbnails {
+            display: flex;
+            margin-top: 10px;
+        }
+
+            .product-thumbnails img {
+                width: 60px;
+                height: 60px;
+                margin-right: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+        .product-info h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .product-info .rating {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+            .product-info .rating i {
+                color: #ffcc00;
+                margin-right: 5px;
+            }
+
+        .product-info .price {
+            font-size: 28px;
+            color: #d0021b;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .product-info .flavor {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+            .product-info .flavor button {
+                padding: 5px 10px;
+                border: 1px solid #007bff;
+                background-color: #fff;
+                color: #007bff;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+                .product-info .flavor button:hover {
+                    background-color: #007bff;
+                    color: #fff;
+                }
+
+        .shipping-info {
+            margin-top: 20px;
+        }
+
+            .shipping-info h3 {
+                font-size: 18px;
+                margin: 0 0 10px 0;
+            }
+
+            .shipping-info p {
+                margin: 5px 0;
+                font-size: 14px;
+            }
+
+            .shipping-info .highlight {
+                color: #d0021b;
+                font-weight: bold;
+            }
+
+        .purchase-options {
+            text-align: center;
+        }
+
+            .purchase-options .price {
+                font-size: 28px;
+                color: #d0021b;
+                margin: 20px 0;
+            }
+
+            .purchase-options .quantity {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 20px 0;
+            }
+
+                .purchase-options .quantity button {
+                    padding: 5px 10px;
+                    border: 1px solid #ccc;
+                    background-color: #fff;
+                    cursor: pointer;
+                }
+
+                .purchase-options .quantity input {
+                    width: 40px;
+                    text-align: center;
+                    border: 1px solid #ccc;
+                    margin: 0 10px;
+                }
+
+            .purchase-options .buy-now, .purchase-options .add-to-cart {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                margin: 10px 0;
+            }
+
+            .purchase-options .buy-now {
+                background-color: #d0021b;
+                color: #fff;
+            }
+
+            .purchase-options .add-to-cart {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+        input[type="text"] {
+            width: 1000px; /* Độ rộng của input */
+            padding: 5px; /* Khoảng cách bên trong input */
+            border: 2px solid #007bff; /* Viền input */
+            border-radius: 8px; /* Góc bo tròn */
+            font-size: 12px; /* Kích thước chữ */
+            color: #333; /* Màu chữ */
+            background-color: #f9f9f9; /* Màu nền */
+            outline: none; /* Xóa viền mặc định khi nhấp vào */
+            transition: border-color 0.3s ease-in-out; /* Hiệu ứng khi thay đổi viền */
+        }
+
+            /* Khi người dùng nhấp vào input */
+            input[type="text"]:focus {
+                border-color: #0056b3; /* Thay đổi màu viền khi được chọn */
+                background-color: #fff; /* Màu nền khi input được chọn */
+            }
+
+            /* Thiết lập cho placeholder */
+            input[type="text"]::placeholder {
+                color: #aaa; /* Màu chữ placeholder */
+                font-style: italic; /* Nghiêng chữ placeholder */
+            }
+
+        .shipping-info {
+            background-color: white;
+            flex: 1;
+            margin-right: 20px;
+            border-radius: 8px;
+            display: normal;
+            padding: 5px;
+        }
+
+        section div h2 {
+            border-bottom: 1px solid #ccc;
+            color: #504e4e;
+            user-select: text;
+        }
+
+        section div h2 {
+            text-align: left;
+        }
+
+        section div table {
+            width: auto;
+            display: flex;
+            border-bottom: 1px solid #ccc;
+            color: #504e4e;
+            user-select: text;
+        }
+
+        .dvbs {
+            background-color: white;
+            border-bottom: 1px solid #ccc;
+        }
+
+        section div h4 {
+            border-bottom: 1px solid #ccc;
+            color: #504e4e;
+            user-select: text;
+            text-align: left;
+        }
+
+        section div h6 {
+            text-align: left;
+            color: #504e4e;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" align="center">
+        <div style="color:#0caa00" class="voucher">Freeship đơn từ 45k, giảm nhiều hơn cùng Freeship Xtra</div>
+        <div class="header">
+            <!-- Thay đổi đường dẫn ảnh logo bằng Razor -->
+            <img height="100" src="~/Content/Image/Logo_Tiki_2023.png" alt="Tiki Logo" width="100" />
+
+            <!-- Thanh tìm kiếm -->
+            <input placeholder="Giao nhanh 2h" type="text" />
+
+            <!-- Các icon bên phải -->
+            <div class="icons">
+                <i class="fas fa-user"></i>
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+        </div>
+        <!-- Các mục lục lựa chọn -->
+        <div class="category-links">
+            <a href="#">Điện gia dụng</a>
+            <a href="#">Xe cộ</a>
+            <a href="#">Mẹ & Bé</a>
+            <a href="#">Khỏe đẹp</a>
+            <a href="#">Nhà cửa</a>
+            <a href="#">Sách</a>
+            <a href="#">Thể thao</a>
+            <a href="#">Ensure</a>
+            <a href="#">Sure Prevent Gold 900g</a>
+            <a href="#">Sữa tiểu đường</a>
+        </div>
+        <!-- Breadcrumb căn trái -->
+        <div class="breadcrumb">
+            <a href="#">Trang chủ</a> &gt;
+            <a href="#">Đồ Chơi - Mẹ & Bé</a> &gt;
+            <a href="#">Dinh dưỡng cho người lớn</a> &gt; Lon Sữa Glucerna 800g/lon - Tặng 2 gói dùng thử
+        </div>
+
+        <!-- Phần nội dung còn lại -->
+        <div class="container">
+            <div class="left-column">
+                <div class="product-images">
+                    <img id="mainImage" src="~/Content/Image/anhlonsua.png" alt="Product Image" width="400" height="400" />
+                </div>
+                <div class="product-thumbnails">
+                    <img class="thumbnail" src="~/Content/Thumpnail/thumpnail.png" alt="Thumbnail 1" width="60" height="60" />
+                    <img class="thumbnail" src="~/Content/Thumpnail/thumpnail2.png" alt="Thumbnail 2" width="60" height="60" />
+                    <img class="thumbnail" src="~/Content/Thumpnail/thumpnail3.png" alt="Thumbnail 3" width="60" height="60" />
+                    <img class="thumbnail" src="~/Content/Thumpnail/thumpnail4.png" alt="Thumbnail 4" width="60" height="60" />
+                </div>
+            </div>
+
+            <!-- Phần giữa -->
+            <section>
+                <div class="center-column">
+                    <div class="product-info">
+                        <h1>Lon Sữa Glucerna 800g/lon - Tặng 2 gói dùng thử</h1>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0 (12)</span>
+                        </div>
+
+                        <div class="price">1.034.550₫</div>
+                        <div class="flavor">
+                            <span>Hương vị</span>
+                            <button>Vani</button>
+                        </div>
+                    </div>
+                </div>
+                <section>
+                    <div class="shipping-info">
+                        <div>
+                            <div>
+                                <div>
+                                    <h2>
+                                        <p>Thông tin vận chuyển </p>
+                                        <p>Giao đến: Q.1, P. Bến Nghé, Hồ Chí Minh</p>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div>
+                                <h2>
+                                    <p><span class="highlight">NOW</span> Giao siêu tốc 2h</p>
+                                    <p>Trước 10h ngày mai: <span class="highlight">Miễn phí</span> 25.000₫</p>
+                                </h2>
+                            </div>
+
+                            <div>
+                                <h2>
+                                    <p>Giao hàng tiêu chuẩn</p>
+                                    <p>13h - 18h, 05/10: <span class="highlight">Miễn phí</span></p>
+                                </h2>
+                            </div>
+
+
+                        </div>
+                        <div>
+                            <h6>
+                                <p>Freeshop 10k đơn từ 45k, Freeship 25k đơn từ 100k</p>
+                            </h6>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Phần bên phải -->
+
+            <div class="right-column">
+                <section>
+                    <div class="purchase-options">
+                        <table>
+                            <h3>
+                            <tr>
+                                <td valign="middle">
+                                    <div class="header">
+                                        <!-- Thay đổi đường dẫn ảnh logo bằng Razor -->
+                                        <img height="100" src="~/Content/Image/Logo_Tiki_2023.png" alt="Tiki Logo" width="50" />
+                                </td>
+
+                                <td rowspan="2">Tiki Trading<br />4.7 *(5,5tr đánh giá)</td>
+
+                            </tr>
+                            </h3>
+                        </table>
+                        <h3>
+                            <div class="right-column">
+                                <div class="purchase-options">
+                                    <div class="quantity">
+                                        <button id="decreaseBtn">-</button>
+                                        <input type="text" id="quantityInput" value="1" />
+                                        <button id="increaseBtn">+</button>
+                                    </div>
+                                    <div class="temp-price">
+                                        Tạm tính: <span id="tempPrice">1.034.550₫</span>
+                                    </div>
+                                    <button class="buy-now">Mua ngay</button>
+                                    <button class="add-to-cart">Thêm vào giỏ</button>
+                                    <button class="add-to-cart">Mua trước tra sau</button>
+                                </div>
+                            </div>
+                    </div>
+            </div>
+            </section>
+
+        </div>
+    </div>
+    </div>
+
+    <script>
+        let price = 1034550; // Giá sản phẩm
+        let quantityInput = document.getElementById('quantityInput');
+        let tempPriceElement = document.getElementById('tempPrice');
+
+        function updateTempPrice() {
+            let quantity = parseInt(quantityInput.value);
+            let tempPrice = price * quantity;
+            tempPriceElement.textContent = tempPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        }
+
+        document.getElementById('increaseBtn').addEventListener('click', function () {
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+            updateTempPrice();
+        });
+
+        document.getElementById('decreaseBtn').addEventListener('click', function () {
+            if (parseInt(quantityInput.value) > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+                updateTempPrice();
+            }
+        });
+
+        // Cập nhật tạm tính khi số lượng thay đổi thủ công
+        quantityInput.addEventListener('input', function () {
+            if (parseInt(quantityInput.value) > 0) {
+                updateTempPrice();
+            }
+        });
+        // Lấy tất cả các ảnh thumbnail
+        let thumbnails = document.querySelectorAll('.thumbnail');
+
+        // Lặp qua từng ảnh thumbnail và thêm sự kiện click
+        thumbnails.forEach(function (thumbnail) {
+            thumbnail.addEventListener('click', function () {
+                // Lấy giá trị src của ảnh thumbnail
+                let newImageSrc = this.src;
+                // Gán giá trị src mới cho ảnh lớn
+                document.getElementById('mainImage').src = newImageSrc;
+            });
+        });
+    </script>
+</body>
+</html>
